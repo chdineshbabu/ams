@@ -7,6 +7,7 @@ import Admin from "./pages/Admin";
 
 function App() {
   return (
+    <div className="mx-36 my-12">
     <BrowserRouter>
       <Routes>
           <Route index element={<Login />} />
@@ -15,6 +16,7 @@ function App() {
           <Route path="admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 

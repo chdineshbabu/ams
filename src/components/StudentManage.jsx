@@ -1,9 +1,9 @@
-import { Pencil, Trash2 } from 'lucide-react'
+import { Pencil, Trash2 } from "lucide-react";
 
-export default function Student({ students, handleDelete, handleAddStudent, newStudent, setNewStudent }) {
+export default function Student() {
   return (
-    <div>
-      <table className="w-full border-collapse">
+    <div className="flex items-start justify-around my-12">
+      <table className=" w-[50%] border-collapse">
         <thead>
           <tr className="bg-gray-200">
             <th className="p-2 text-left">Name</th>
@@ -11,7 +11,7 @@ export default function Student({ students, handleDelete, handleAddStudent, newS
             <th className="p-2 text-right">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
           {students.map((student) => (
             <tr key={student.id} className="border-t">
               <td className="p-2">{student.name}</td>
@@ -26,40 +26,56 @@ export default function Student({ students, handleDelete, handleAddStudent, newS
               </td>
             </tr>
           ))}
-        </tbody>
+        </tbody> */}
       </table>
 
-      <div className="mt-4 p-4 bg-white shadow-md rounded-md">
+      <div className="mt-4 p-4 bg-white shadow-md w-[30%] rounded-md">
         <h2 className="text-lg font-bold">Add New Student</h2>
         <div className="grid gap-4 mt-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Name
+            </label>
             <input
               type="text"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:border-blue-500"
               placeholder="Enter name"
-              value={newStudent.name}
-              onChange={(e) => setNewStudent({ ...newStudent, name: e.target.value })}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Grade</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Grade
+            </label>
             <input
               type="text"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:border-blue-500"
               placeholder="Enter grade"
-              value={newStudent.grade || ''}
-              onChange={(e) => setNewStudent({ ...newStudent, grade: e.target.value })}
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Age
+            </label>
+            <input
+              type="number"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:border-blue-500"
+              placeholder="Enter Age"
+            />
+          </div>
+          <div className="flex gap-5">
+            <label className="block text-sm font-medium text-gray-700">
+              Gender
+            </label>
+            <select name="gender" id="cars">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
         </div>
-        <button
-          className="mt-4 w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-          onClick={handleAddStudent}
-        >
+        <button className="mt-4 w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
           Add Student
         </button>
       </div>
     </div>
-  )
+  );
 }

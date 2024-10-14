@@ -1,9 +1,9 @@
-import { Pencil, Trash2 } from 'lucide-react'
+import { Pencil, Trash2 } from "lucide-react";
 
-export default function Teacher({ teachers, handleDelete, handleAddTeacher, newTeacher, setNewTeacher }) {
+export default function Teacher() {
   return (
-    <div>
-      <table className="w-full border-collapse">
+    <div className="flex justify-around items-start">
+      <table className="w-[50%] border-collapse">
         <thead>
           <tr className="bg-gray-200">
             <th className="p-2 text-left">Name</th>
@@ -11,7 +11,7 @@ export default function Teacher({ teachers, handleDelete, handleAddTeacher, newT
             <th className="p-2 text-right">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
           {teachers.map((teacher) => (
             <tr key={teacher.id} className="border-t">
               <td className="p-2">{teacher.name}</td>
@@ -26,40 +26,66 @@ export default function Teacher({ teachers, handleDelete, handleAddTeacher, newT
               </td>
             </tr>
           ))}
-        </tbody>
+        </tbody> */}
       </table>
 
-      <div className="mt-4 p-4 bg-white shadow-md rounded-md">
+      <div className="mt-4 p-4 w-[30%] bg-white shadow-md rounded-md">
         <h2 className="text-lg font-bold">Add New Teacher</h2>
         <div className="grid gap-4 mt-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Name
+            </label>
             <input
               type="text"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:border-blue-500"
               placeholder="Enter name"
-              value={newTeacher.name}
-              onChange={(e) => setNewTeacher({ ...newTeacher, name: e.target.value })}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Subject</label>
+            <label className="block text-sm font-medium text-gray-700">
+              department
+            </label>
+            <input
+              type="text"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:border-blue-500"
+              placeholder="Enter department"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              subject
+            </label>
             <input
               type="text"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:border-blue-500"
               placeholder="Enter subject"
-              value={newTeacher.subject || ''}
-              onChange={(e) => setNewTeacher({ ...newTeacher, subject: e.target.value })}
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              age
+            </label>
+            <input
+              type="number"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:border-blue-500"
+              placeholder="Enter age"
+            />
+          </div>
+          <div className="flex gap-5 justify-between">
+            <label className="block text-sm font-medium text-gray-700">
+              Gender
+            </label>
+            <select name="gender" id="cars">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
         </div>
-        <button
-          className="mt-4 w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-          onClick={handleAddTeacher}
-        >
+        <button className="mt-4 w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
           Add Teacher
         </button>
       </div>
     </div>
-  )
+  );
 }

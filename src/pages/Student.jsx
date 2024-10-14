@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { CalendarIcon } from "lucide-react"
-
-// Mock data for the student and attendance records
+import axios from 'axios'
 const studentData = {
   name: "John Doe",
   id: "S12345",
@@ -19,6 +18,11 @@ export default function Student() {
     from: undefined,
     to: undefined,
   })
+  
+  async function getData() {
+    const response  = await axios.get('http://127.0.0.1:3001/');
+    console.log(response)
+  }
 
   const calculateOverallAttendance = () => {
     const totalClasses = studentData.attendanceRecords.reduce((sum, record) => sum + record.totalClasses, 0)
@@ -71,7 +75,9 @@ export default function Student() {
             ))}
           </tbody>
         </table>
+        
       </div>
+      <button onClick={getData} className='p-2 bg-black text-white rounded-lg'>get Data</button>
     </div>
   )
 }

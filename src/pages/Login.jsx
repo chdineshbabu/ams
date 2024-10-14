@@ -1,22 +1,37 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 export default function Login() {
   const [userType, setUserType] = useState('student')
-  const [id, setId] = useState('')
+  const [email, setId] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setError('')
-    console.log(`Logging in ${userType} with ID: ${id}`)
-
-    if (id && password) {
-      alert(`Login attempt for ${userType} with ID: ${id}`)
-    } else {
-      setError('Please enter both ID and password')
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    setError('');if (!email || !password) {
+      setError('Please enter both ID and password');
+      return; 
     }
-  }
+    try {
+      console.log(`Logging in ${userType} with ID: ${email}`);
+       const res = await axios.post('http://127.0.0.1:3001/login', {
+        email: email,
+        password: password,
+        userType: userType
+      });
+      console.log(res);
+      if (res.data.success) {
+        alert(`Login successful for ${userType} with ID: ${email}`);
+      } else {
+        setError(res.data.message || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      console.error(error);
+      setError('An error occurred during login. Please try again.');
+    }
+  };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -62,7 +77,7 @@ export default function Login() {
                 id="id"
                 type="text"
                 placeholder={`Enter your ${userType} ID`}
-                value={id}
+                value={email}
                 onChange={(e) => setId(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 required
